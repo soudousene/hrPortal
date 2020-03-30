@@ -44,19 +44,19 @@ export class AbsenceComponent implements OnInit
         this.service.getAbsenceList().then(res => {
             this.absenceList = res as Absence[];
             this.viewState = 'tableMode';
-            this.windowTitle = "Liste des entr�es";
+            this.windowTitle = "Liste des entrées";
     });
     }
 
     onAddOrEditItem(index, absenceId) {
 
-        if (index === null) {
+        if (index === null) { 
             this.formData = new Absence();
-            this.windowTitle = "Creation d'une nouvelle entr�e";
+            this.windowTitle = "Création d'une nouvelle entrée";
         }
         else {
             this.formData = this.absenceList[index];
-            this.windowTitle = "Creation d'une entrée";
+            this.windowTitle = "Edition d'une entrée";
         }
         this.viewState = 'creationEditMode';
     }
@@ -73,7 +73,7 @@ export class AbsenceComponent implements OnInit
     onShowDetails(index){
         this.formData = this.absenceList[index];
         this.viewState = 'detailsMode';
-        this.windowTitle = "D�tails";
+        this.windowTitle = "Détails";
     }
 
     onSubmit(form: NgForm) {

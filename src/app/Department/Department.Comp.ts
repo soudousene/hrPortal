@@ -44,19 +44,19 @@ export class DepartmentComponent implements OnInit
         this.service.getDepartmentList().then(res => {
             this.departmentList = res as Department[];
             this.viewState = 'tableMode';
-            this.windowTitle = "Liste des entrÈes";
+            this.windowTitle = "Liste des entr√©es";
     });
     }
 
     onAddOrEditItem(index, departmentId) {
 
-        if (index === null) {
+        if (index === null) { 
             this.formData = new Department();
-            this.windowTitle = "Creation d'une nouvelle entrÈe";
+            this.windowTitle = "Cr√©ation d'une nouvelle entr√©e";
         }
         else {
             this.formData = this.departmentList[index];
-            this.windowTitle = "Creation d'une entrÈe";
+            this.windowTitle = "Edition d'une entr√©e";
         }
         this.viewState = 'creationEditMode';
     }
@@ -73,7 +73,7 @@ export class DepartmentComponent implements OnInit
     onShowDetails(index){
         this.formData = this.departmentList[index];
         this.viewState = 'detailsMode';
-        this.windowTitle = "DÈtails";
+        this.windowTitle = "D√©tails";
     }
 
     onSubmit(form: NgForm) {
