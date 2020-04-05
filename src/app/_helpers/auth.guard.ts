@@ -5,12 +5,11 @@ import { AuthenticationService } from '../_services';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService
-    ) { }
+    constructor(private router: Router,
+        private authenticationService: AuthenticationService) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
+    {
         const currentUser = this.authenticationService.currentUserValue;
         if (currentUser) {
             // check if route is restricted by role

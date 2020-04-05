@@ -12,7 +12,7 @@ export class CustomerService {
   constructor(private http : HttpClient) { }
 
   getCustomerList() {
-    let resp = this.http.get<Customer[]>(environment.apiURL+'/Customer');
+    let resp = this.http.get<Customer[]>(environment.apiUrl+'/Customer');
     return resp;
    }
 }

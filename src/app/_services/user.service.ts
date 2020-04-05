@@ -2,7 +2,7 @@
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { User } from '../_models';
+import { User } from '../_models/index';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {

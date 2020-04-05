@@ -1,23 +1,33 @@
-﻿<!-- nav -->
-<nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
-    <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
-        <a class="nav-item nav-link" routerLink="/admin" *ngIf="isAdmin">Admin</a>
-        <a class="nav-item nav-link" (click)="logout()">Logout</a>
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-dark" *ngIf="currentUser">
+    <a class="navbar-brand" routerLink="/">Home</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler"
+        aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarToggler">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0" id="menuItems">
+            <li class="nav-item">
+                <a class="nav-item nav-link" routerLink="/admin" routerLinkActive="active" *ngIf="isAdmin">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-item nav-link" routerLink="/absence" routerLinkActive="active" *ngIf="isAdmin">Absences</a>
+            </li>
+        </ul>
+        <ul>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true">{{currentUser.firstName}} {{currentUser.lastName}}</a>
+                <div class="dropdown-menu navbar-dark bg-dark">
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" (click)="logout()" href="#">Logout</a>
+                </div>
+            </li>
+        </ul>
     </div>
 </nav>
-
 <!-- main app container -->
 <div class="container">
     <router-outlet></router-outlet>
-</div>
-
-<!-- credits -->
-<div class="text-center mt-4">
-    <p>
-        <a href="https://jasonwatmore.com/post/2019/08/06/angular-8-role-based-authorization-tutorial-with-example" target="_top">Angular 8 - Role Based Authorization Tutorial with Example</a>
-    </p>
-    <p>
-        <a href="https://jasonwatmore.com" target="_top">JasonWatmore.com</a>
-    </p>
 </div>

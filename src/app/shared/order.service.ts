@@ -18,19 +18,19 @@ export class OrderService {
       ...this.formData,
       OrderItems: this.orderItems
     };
-    return this.http.post(environment.apiURL + '/Order', body);
+    return this.http.post(environment.apiUrl + '/Order', body);
   }
 
   getOrderList() {
-    return this.http.get(environment.apiURL + '/Order').toPromise();
+    return this.http.get(environment.apiUrl + '/Order').toPromise();
   }
 
   getOrderByID(id:number):any {
-    return this.http.get(environment.apiURL + '/Order/'+id).toPromise();
+    return this.http.get(environment.apiUrl + '/Order/'+id).toPromise();
   }
 
   deleteOrder(id:number) {
-    return this.http.delete(environment.apiURL + '/Order/'+id).toPromise();
+    return this.http.delete(environment.apiUrl + '/Order/'+id).toPromise();
   }
 
 }

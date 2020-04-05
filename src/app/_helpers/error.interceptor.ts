@@ -17,8 +17,14 @@ export class ErrorInterceptor implements HttpInterceptor {
                 location.reload(true);
             }
 
-            const error = err.error.message || err.statusText;
-            return throwError(error);
+            let errorMessage = '';
+            if (err.error instanceof ErrorEvent) { // client-side error
+                errorMessage = `Error: ${err.error.message}`;
+            } else { // server-side error
+                errorMessage = `Error Status: ${err.status}. Message: ${err.message}`;
+            }
+
+            return throwError(errorMessage);
         }))
     }
 }
