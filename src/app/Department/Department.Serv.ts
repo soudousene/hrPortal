@@ -15,19 +15,19 @@ export class DepartmentService {
     var body = {
 
     };
-    return this.http.post(environment.apiURL + '/Department', body);
+    return this.http.post(environment.apiUrl + '/Department', body);
   }
 
   getDepartmentList() {
-        return this.http.get<Department[]>(environment.apiURL + '/Department').toPromise();
+        return this.http.get<Department[]>(environment.apiUrl + '/Department').toPromise();
   }
 
   getDepartmentByID(id:string):any {
-    return this.http.get(environment.apiURL + '/Department/'+id).toPromise();
+    return this.http.get(environment.apiUrl + '/Department/'+id).toPromise();
   }
 
   deleteDepartment(id:string) {
-    return this.http.delete(environment.apiURL + '/Department/'+id).toPromise();
+    return this.http.delete(environment.apiUrl + '/Department/'+id).toPromise();
   }
 
 }

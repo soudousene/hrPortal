@@ -15,19 +15,20 @@ export class AbsenceService {
     var body = {
 
     };
-    return this.http.post(environment.apiURL + '/Absence', body);
+    return this.http.post(environment.apiUrl + '/Absence', body);
   }
 
   getAbsenceList() {
-        return this.http.get<Absence[]>(environment.apiURL + '/Absence').toPromise();
+    console.log('==============Absence service')
+    return this.http.get<Absence[]>(environment.apiUrl + '/Absence').toPromise();
   }
 
   getAbsenceByID(id:string):any {
-    return this.http.get(environment.apiURL + '/Absence/'+id).toPromise();
+    return this.http.get(environment.apiUrl + '/Absence/'+id).toPromise();
   }
 
   deleteAbsence(id:string) {
-    return this.http.delete(environment.apiURL + '/Absence/'+id).toPromise();
+    return this.http.delete(environment.apiUrl + '/Absence/'+id).toPromise();
   }
 
 }
