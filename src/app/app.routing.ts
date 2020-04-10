@@ -2,9 +2,9 @@
 import { HomeComponent } from './home';
 import { AdminComponent } from './admin';
 import { LoginComponent } from './login';
-import { Role } from './_models/index';
 import { AuthGuard } from './_helpers/auth.guard';
 import { AbsenceComponent } from './Absence/Absence.Comp';
+import { Role } from './_helpers';
 
 const routes: Routes = [
     {
@@ -30,7 +30,8 @@ const routes: Routes = [
     },
 
     // otherwise redirect to home
-    { path: '**', redirectTo: '' }
+    //Commented because routes after are ignored.
+    //{ path: '**', redirectTo: '' } 
 ];
 
 export const appRoutingModule = RouterModule.forRoot(routes);

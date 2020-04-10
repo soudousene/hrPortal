@@ -2,8 +2,9 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { AuthenticationService } from './authentication.service';
 
-import { AuthenticationService } from '../_services';
+
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authenticationService.login(this.f.username.value, this.f.password.value)
-        .pipe(first())
+        .pipe(first())  //https://rxjs-dev.firebaseapp.com/guide/operators.     pipe: convolution de fonctions
         .subscribe(
         data => {
             this.router.navigate([this.returnUrl]);

@@ -19,8 +19,7 @@ export class AbsenceService {
   }
 
   getAbsenceList() {
-    console.log('==============Absence service')
-    return this.http.get<Absence[]>(environment.apiUrl + '/Absence').toPromise();
+        return this.http.get<Absence[]>(environment.apiUrl + '/Absence').toPromise();
   }
 
   getAbsenceByID(id:string):any {

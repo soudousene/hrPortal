@@ -1,4 +1,5 @@
-﻿import { BrowserModule } from '@angular/platform-browser';
+﻿import { UserComponent } from './User/User.Comp';
+import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -26,7 +27,7 @@ declarations:   [
     HomeComponent,
     AdminComponent,
     LoginComponent
-    ],
+    ,UserComponent],
   imports: [
     BrowserModule,
     FormsModule,
