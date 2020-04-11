@@ -23,7 +23,6 @@ declarations:   [
     AppComponent,
     AbsenceComponent,
     DepartmentComponent,
-    AppComponent,
     HomeComponent,
     AdminComponent,
     LoginComponent

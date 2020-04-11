@@ -1,4 +1,5 @@
-﻿import { Routes, RouterModule } from '@angular/router';
+import { UserComponent } from './User/User.Comp';
+import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home';
 import { AdminComponent } from './admin';
 import { LoginComponent } from './login';
@@ -32,6 +33,12 @@ const routes: Routes = [
     // otherwise redirect to home
     //Commented because routes after are ignored.
     //{ path: '**', redirectTo: '' } 
-];
+
+	{
+		path: 'user', 
+		component: UserComponent, 
+		canActivate: [AuthGuard],
+		data: {roles: [Role.admin]}
+	},];
 
 export const appRoutingModule = RouterModule.forRoot(routes);
