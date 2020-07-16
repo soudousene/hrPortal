@@ -7,19 +7,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class DepartmentService {
-  public formData: Department;
 
   constructor(public http: HttpClient) { }
 
-  saveOrUpdateDepartment() {
-    var body = {
-
-    };
-    return this.http.post(environment.apiUrl + '/Department', body);
+  saveOrUpdateDepartment(formData: Department, isPost : boolean) {
+	if (isPost)
+		return this.http.post(environment.apiUrl + '/Department', formData).toPromise();
+	else
+		return this.http.put(environment.apiUrl + '/Department', formData).toPromise();
   }
 
   getDepartmentList() {
-        return this.http.get<Department[]>(environment.apiUrl + '/Department').toPromise();
+	return this.http.get<Department[]>(environment.apiUrl + '/Department').toPromise();
   }
 
   getDepartmentByID(id:string):any {

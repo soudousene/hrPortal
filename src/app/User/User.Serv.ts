@@ -7,19 +7,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class UserService {
-  public formData: User;
 
   constructor(public http: HttpClient) { }
 
-  saveOrUpdateUser() {
-    var body = {
-
-    };
-    return this.http.post(environment.apiUrl + '/User', body);
+  saveOrUpdateUser(formData: User, isPost : boolean) {
+	if (isPost)
+		return this.http.post(environment.apiUrl + '/User', formData).toPromise();
+	else
+		return this.http.put(environment.apiUrl + '/User', formData).toPromise();
   }
 
   getUserList() {
-        return this.http.get<User[]>(environment.apiUrl + '/User').toPromise();
+	return this.http.get<User[]>(environment.apiUrl + '/User').toPromise();
   }
 
   getUserByID(id:string):any {

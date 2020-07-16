@@ -49,16 +49,17 @@ export class UserComponent implements OnInit
     }
 
     onAddOrEditItem(index, userId) {
-
         if (index === null) { 
-            this.formData = new User();
-            this.windowTitle = "Création d'une nouvelle entrée";
+            this.formData = new User()
+			this.viewState = 'creationMode'
+            this.windowTitle = "Création d'une nouvelle entrée"
         }
         else {
-            this.formData = this.userList[index];
-            this.windowTitle = "Edition d'une entrée";
+            this.formData = this.userList[index]
+			this.viewState = 'editMode'
+            this.windowTitle = "Edition d'une entrée"
         }
-        this.viewState = 'creationEditMode';
+		
     }
 
     onDeleteItem(userId: string, index: number) {
@@ -77,7 +78,11 @@ export class UserComponent implements OnInit
     }
 
     onSubmit(form: NgForm) {
-        this.refreshList();
+		var isPostRequest : boolean = true
+		this.viewState === 'creationMode' ? isPostRequest = true : isPostRequest = false
+		this.service.saveOrUpdateUser(this.formData, isPostRequest).then(
+			() => this.refreshList()
+        )
     }
 
     onReset(){

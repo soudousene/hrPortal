@@ -1,9 +1,8 @@
 import * as enums_ from '../Enumerations';
 
 export class Department {
-	departmentId: number;
+	departmentId: string;
 	departmentName: string;
-	surname: string;
-	deptChief: string;
+	deptChiefId: string;
 	isEditable: boolean;
 }

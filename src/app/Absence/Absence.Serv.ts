@@ -7,19 +7,18 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AbsenceService {
-  public formData: Absence;
 
   constructor(public http: HttpClient) { }
 
-  saveOrUpdateAbsence() {
-    var body = {
-
-    };
-    return this.http.post(environment.apiUrl + '/Absence', body);
+  saveOrUpdateAbsence(formData: Absence, isPost : boolean) {
+	if (isPost)
+		return this.http.post(environment.apiUrl + '/Absence', formData).toPromise();
+	else
+		return this.http.put(environment.apiUrl + '/Absence', formData).toPromise();
   }
 
   getAbsenceList() {
-        return this.http.get<Absence[]>(environment.apiUrl + '/Absence').toPromise();
+	return this.http.get<Absence[]>(environment.apiUrl + '/Absence').toPromise();
   }
 
   getAbsenceByID(id:string):any {

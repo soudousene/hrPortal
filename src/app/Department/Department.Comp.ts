@@ -49,16 +49,17 @@ export class DepartmentComponent implements OnInit
     }
 
     onAddOrEditItem(index, departmentId) {
-
         if (index === null) { 
-            this.formData = new Department();
-            this.windowTitle = "Création d'une nouvelle entrée";
+            this.formData = new Department()
+			this.viewState = 'creationMode'
+            this.windowTitle = "Création d'une nouvelle entrée"
         }
         else {
-            this.formData = this.departmentList[index];
-            this.windowTitle = "Edition d'une entrée";
+            this.formData = this.departmentList[index]
+			this.viewState = 'editMode'
+            this.windowTitle = "Edition d'une entrée"
         }
-        this.viewState = 'creationEditMode';
+		
     }
 
     onDeleteItem(departmentId: string, index: number) {
@@ -77,7 +78,11 @@ export class DepartmentComponent implements OnInit
     }
 
     onSubmit(form: NgForm) {
-        this.refreshList();
+		var isPostRequest : boolean = true
+		this.viewState === 'creationMode' ? isPostRequest = true : isPostRequest = false
+		this.service.saveOrUpdateDepartment(this.formData, isPostRequest).then(
+			() => this.refreshList()
+        )
     }
 
     onReset(){

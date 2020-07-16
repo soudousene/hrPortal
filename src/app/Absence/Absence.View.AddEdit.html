@@ -1,14 +1,13 @@
 <div class="card">
 <h4 class="card-header">{{windowTitle}}</h4>
 <div class="card-body">
-
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)" (reset)="onReset()"><div class="row" *ngIf="viewState === 'creationEditMode' || viewState === 'detailsMode'">
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)" (reset)="onReset()"><div class="row" *ngIf="viewState === 'creationMode' || viewState === 'editMode' || viewState === 'detailsMode'">
     <div class="form-group col-md-6">
         <label>Type d'absence</label>
         <select name="absenceTypeEnum" #absenceTypeEnum="ngModel" [(ngModel)]="formData.absenceTypeEnum" class="form-control"
           [class.is-invalid]="formData.absenceTypeEnum === -1">
-          <option value="-1">-Select-</option>
-          <option [value]="item.id" *ngFor="let item of allEnums.AbsenceTypeEnum">{{item.name}}</option>
+          <option ngValue="-1">-Select-</option>
+          <option [ngValue]="item.id" *ngFor="let item of allEnums.AbsenceTypeEnum">{{item.name}}</option>
         </select>
     </div>
   
@@ -21,8 +20,8 @@
         <label>Moment de début</label>
         <select name="startPartOfDay" #startPartOfDay="ngModel" [(ngModel)]="formData.startPartOfDay" class="form-control"
           [class.is-invalid]="formData.startPartOfDay === -1">
-          <option value="-1">-Select-</option>
-          <option [value]="item.id" *ngFor="let item of allEnums.PartOfDayEnum">{{item.name}}</option>
+          <option ngValue="-1">-Select-</option>
+          <option [ngValue]="item.id" *ngFor="let item of allEnums.PartOfDayEnum">{{item.name}}</option>
         </select>
     </div>
   
@@ -35,8 +34,8 @@
         <label>Moment de fin</label>
         <select name="endPartOfDay" #endPartOfDay="ngModel" [(ngModel)]="formData.endPartOfDay" class="form-control"
           [class.is-invalid]="formData.endPartOfDay === -1">
-          <option value="-1">-Select-</option>
-          <option [value]="item.id" *ngFor="let item of allEnums.PartOfDayEnum">{{item.name}}</option>
+          <option ngValue="-1">-Select-</option>
+          <option [ngValue]="item.id" *ngFor="let item of allEnums.PartOfDayEnum">{{item.name}}</option>
         </select>
     </div>
   
@@ -44,8 +43,8 @@
         <label>Etat</label>
         <select name="validationStatus" #validationStatus="ngModel" [(ngModel)]="formData.validationStatus" class="form-control"
           [class.is-invalid]="formData.validationStatus === -1">
-          <option value="-1">-Select-</option>
-          <option [value]="item.id" *ngFor="let item of allEnums.ValidationStatus">{{item.name}}</option>
+          <option ngValue="-1">-Select-</option>
+          <option [ngValue]="item.id" *ngFor="let item of allEnums.ValidationStatus">{{item.name}}</option>
         </select>
     </div>
   
@@ -75,7 +74,7 @@
       </tr>
 
       <tr *ngFor="let item of absenceList;let i=index;"  (click)="onShowDetails(i)">
-        <td>{{allEnums.AbsenceTypeEnum[absenceList[i].absenceTypeEnum].name}}</td><td>{{item.startDate}}</td><td>{{allEnums.PartOfDayEnum[absenceList[i].startPartOfDay].name}}</td><td>{{item.endDate}}</td><td>{{allEnums.PartOfDayEnum[absenceList[i].endPartOfDay].name}}</td><td>{{allEnums.ValidationStatus[absenceList[i].validationStatus].name}}</td>
+        <td>{{allEnums.AbsenceTypeEnum[absenceList[i].absenceTypeEnum]?.name}}</td><td>{{item.startDate}}</td><td>{{allEnums.PartOfDayEnum[absenceList[i].startPartOfDay]?.name}}</td><td>{{item.endDate}}</td><td>{{allEnums.PartOfDayEnum[absenceList[i].endPartOfDay]?.name}}</td><td>{{allEnums.ValidationStatus[absenceList[i].validationStatus]?.name}}</td>
         <td *ngIf="item.isEditable">
           <a class="btn btn-sm btn-info text-white" (click)="onAddOrEditItem(i, formData.absenceId)"><i class="fa fa-pencil"></i></a>
           <a class="btn btn-sm btn-danger text-white ml-1" (click)="onDeleteItem(item.absenceId,i)"><i class="fa fa-trash"></i></a>
@@ -86,9 +85,7 @@
   </div>
   
     <div class="form-group">
-        <button *ngIf="viewState === 'creationEditMode'" type="submit" class="btn btn-dark"><i class="fa fa-database"></i>Submit</button>
-        <button *ngIf="viewState === 'creationEditMode' || viewState === 'detailsMode'" type="reset" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i>Close</button>
+        <button *ngIf="viewState === 'creationMode' || viewState === 'editMode'" type="submit" class="btn btn-dark"><i class="fa fa-database"></i>Submit</button>
+        <button *ngIf="viewState === 'creationMode' || viewState === 'editMode' || viewState === 'detailsMode'" type="reset" class="btn btn-outline-dark ml-1"><i class="fa fa-close"></i>Close</button>
       </div>
-  </form>
-</div>
-</div>
+  </form></div></div>

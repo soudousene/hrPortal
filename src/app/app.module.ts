@@ -17,6 +17,7 @@ import { AdminComponent } from './admin';
 import { LoginComponent } from './login';
 import { appRoutingModule } from './app.routing';
 import { JwtInterceptor, ErrorInterceptor } from './_helpers';
+import { PwdLostComponent } from './login/pwdLost.component';
 
 @NgModule({
 declarations:   [
@@ -25,7 +26,8 @@ declarations:   [
     DepartmentComponent,
     HomeComponent,
     AdminComponent,
-    LoginComponent
+    LoginComponent,
+    PwdLostComponent
     ,UserComponent],
   imports: [
     BrowserModule,
@@ -34,7 +36,7 @@ declarations:   [
     MatDialogModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-	BrowserModule,
+	  BrowserModule,
     ReactiveFormsModule,
     HttpClientModule,
     appRoutingModule
@@ -46,7 +48,8 @@ declarations:   [
     { provide: MatDialogRef, useValue: {} },
     AllEnums,
 	{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-	{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+  { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ErrorInterceptor
   ],
   bootstrap: [AppComponent]
 })
